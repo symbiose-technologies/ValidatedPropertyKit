@@ -129,3 +129,16 @@ public extension Validated {
     }
     
 }
+
+
+extension Validated: Equatable where Value: Equatable {
+    public static func == (lhs: Validated<Value>, rhs: Validated<Value>) -> Bool {
+        lhs.wrappedValue == rhs.wrappedValue
+    }
+}
+
+extension Validated: Hashable where Value: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(wrappedValue)
+    }
+}
